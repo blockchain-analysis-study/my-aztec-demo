@@ -37,6 +37,9 @@ async function deposit() {
 
   const depositNote = await note.create(bob.publicKey, depositValue);
   depositNotes = [depositNote];
+
+  // 构建 JoinSplitProof
+  // (inputs, outputs, sender, publicValue<这个存款是负,取款是正>, publicOwner)
   const proof = new JoinSplitProof([], depositNotes, bob.address, depositValue * -1, bob.address);
   const data = proof.encodeABI(contractAddresses.zkAsset);
   const signatures = proof.constructSignatures(contractAddresses.zkAsset, []);
