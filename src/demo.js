@@ -48,6 +48,8 @@ async function deposit() {
   console.log(`- prevBalance: ${prevBalance.toString()}`);
 
   console.log(`- executing ace.publicApprove(ZK_ASSET_ADDRESS, ${proof.hash}, ${depositValue})`);
+
+  // 调用 NoteRegistryManager 的 publicApprove()函数
   await (await bob.signers.ace.publicApprove(
     contractAddresses.zkAsset,
     proof.hash,
